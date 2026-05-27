@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.dataManager.ReceiptFileManager;
 import com.pluralsight.entities.*;
 
 import java.time.LocalDateTime;
@@ -383,6 +384,7 @@ public class UserInterface {
                 System.out.println("Transaction Complete");
                 break;
         }
+        ReceiptFileManager.saveReceipt(this.order.generateReceiptText(), this.order.getTimeStamp());
         this.order = null;
         System.out.println("Checkout complete! Returning to main menu...\n");
     }
