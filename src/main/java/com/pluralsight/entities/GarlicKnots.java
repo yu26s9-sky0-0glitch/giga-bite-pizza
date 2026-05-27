@@ -26,6 +26,6 @@ public class GarlicKnots implements Orderable{
 
     @Override
     public String getDescription() {
-        return quantity +" Garlic Knots: "+ price;
+        return String.format("%s %30.2f",quantity +" Garlic Knots: ", calculatePrice());
     }
 }

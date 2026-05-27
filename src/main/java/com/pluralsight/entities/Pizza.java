@@ -75,18 +75,18 @@ public class Pizza implements Orderable{
 
         if (topping.getCategory().equalsIgnoreCase("Meat")) {
             return switch (this.size) {
-                case "8" -> MEAT_8_BASE_PRICE + (topping.isExtra() ? MEAT_8_EXTRA_PRICE : 0);
-                case "12" -> MEAT_12_BASE_PRICE + (topping.isExtra() ? MEAT_12_EXTRA_PRICE : 0);
-                case "16" -> MEAT_16_BASE_PRICE + (topping.isExtra() ? MEAT_16_EXTRA_PRICE : 0);
+                case "8 Inch" -> MEAT_8_BASE_PRICE + (topping.isExtra() ? MEAT_8_EXTRA_PRICE : 0);
+                case "12 Inch" -> MEAT_12_BASE_PRICE + (topping.isExtra() ? MEAT_12_EXTRA_PRICE : 0);
+                case "16 Inch" -> MEAT_16_BASE_PRICE + (topping.isExtra() ? MEAT_16_EXTRA_PRICE : 0);
                 default -> 0.00;
             };
         }
 
         if (topping.getCategory().equalsIgnoreCase("Cheese")) {
             return switch (this.size) {
-                case "8" -> CHEESE_8_BASE_PRICE + (topping.isExtra() ? CHEESE_8_EXTRA_PRICE : 0);
-                case "12" -> CHEESE_12_BASE_PRICE + (topping.isExtra() ? CHEESE_12_EXTRA_PRICE : 0);
-                case "16" -> CHEESE_16_BASE_PRICE + (topping.isExtra() ? CHEESE_16_EXTRA_PRICE : 0);
+                case "8 Inch" -> CHEESE_8_BASE_PRICE + (topping.isExtra() ? CHEESE_8_EXTRA_PRICE : 0);
+                case "12 Inch" -> CHEESE_12_BASE_PRICE + (topping.isExtra() ? CHEESE_12_EXTRA_PRICE : 0);
+                case "16 Inch" -> CHEESE_16_BASE_PRICE + (topping.isExtra() ? CHEESE_16_EXTRA_PRICE : 0);
                 default -> 0.00;
             };
         }
@@ -100,10 +100,15 @@ public class Pizza implements Orderable{
         switch (size){
             case "8 Inch":
                 total+= EIGHT_INCH_PRICE;
+                break;
             case "12 Inch":
                 total+= TWELVE_INCH_PRICE;
+                break;
             case "16 Inch":
                 total+= SIXTEEN_INCH_PRICE;
+                break;
+            default:
+                System.out.println("Invalid Size Entry!");
         }
         for (Topping topping : this.toppings) {
             total += calculateToppingPrice(topping);
@@ -113,6 +118,6 @@ public class Pizza implements Orderable{
 
     @Override
     public String getDescription() {
-        return size + " Inch " +crust+" MYO Pizza: "+calculatePrice();
+        return String.format("%s %s %s %30.2f", size, crust ," MYO Pizza: ",calculatePrice());
     }
 }

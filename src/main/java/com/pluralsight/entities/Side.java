@@ -18,6 +18,6 @@ public class Side implements Orderable {
 
     @Override
     public String getDescription() {
-        return "Side: " + name + " (Included)";
+        return String.format("%s %30s","Side: " + name, " (Included)");
     }
 }

@@ -34,6 +34,11 @@ public class Order {
     public void addItem(Orderable item){
         items.add(item);
     }
+    public void displayItems(){
+            for(Orderable o:items){
+                System.out.println(o.getDescription());
+            }
+    }
     public double calculateTotal(){
         double total =0;
         for(Orderable item: items){

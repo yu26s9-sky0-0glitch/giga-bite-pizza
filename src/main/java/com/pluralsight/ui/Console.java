@@ -106,10 +106,17 @@ public class Console {
      * @return the boolean
      */
     public static boolean promptForYesNo(String prompt) {
-        System.out.print(prompt);
-        String userInput = scanner.nextLine();
-        return userInput.equalsIgnoreCase("YES");
-        //opportunity to enhance this with some error protection.
+        int command;
+        command = promptForInt( prompt+ " \n press 1 for Yes, \n press 0 for No\n->",0,1);
+        switch (command){
+            case 1:
+                return true;
+            case 0:
+                return false;
+            default:
+                System.out.println("Invalid Entry! Try Again!!");
+    }
+        return false;
     }
     /**
      * Makes sure the date is formatted correctly or is empty
