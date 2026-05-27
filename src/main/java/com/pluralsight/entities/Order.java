@@ -10,7 +10,7 @@ public class Order {
     private LocalDateTime timeStamp;
     private List<Orderable> items;
 
-    public Order(String orderId, LocalDateTime timeStamp, List<Orderable> items) {
+    public Order(String orderId, LocalDateTime timeStamp) {
         this.orderId = orderId;
         this.timeStamp = timeStamp;
         this.items = new ArrayList<>();

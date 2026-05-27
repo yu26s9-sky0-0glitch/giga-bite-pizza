@@ -19,12 +19,12 @@ public class GarlicKnots implements Orderable{
     public double getPrice() {
         return price;
     }
-
+    @Override
     public double calculatePrice() {
         return price*quantity;
     }
 
-
+    @Override
     public String getDescription() {
         return quantity +" Garlic Knots: "+ price;
     }

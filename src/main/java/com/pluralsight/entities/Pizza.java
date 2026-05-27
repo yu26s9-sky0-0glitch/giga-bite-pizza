@@ -8,23 +8,23 @@ public class Pizza implements Orderable{
     private String crust;
     private boolean isStuffed;
     private List<Topping> toppings;
-    private static final double EIGHT_INCH = 8.50;
-    private static final double TWELVE_INCH = 12.00;
-    private static final double SIXTEEN_INCH =16.50;
-    private static final double MEAT_8_BASE = 1.00;
-    private static final double MEAT_8_EXTRA = 0.50;
-    private static final double MEAT_12_BASE = 2.00;
-    private static final double MEAT_12_EXTRA = 1.00;
-    private static final double MEAT_16_BASE = 3.00;
-    private static final double MEAT_16_EXTRA = 1.50;
-    private static final double CHEESE_8_BASE = 0.75;
-    private static final double CHEESE_8_EXTRA = 0.30;
-    private static final double CHEESE_12_BASE = 1.50;
-    private static final double CHEESE_12_EXTRA = 0.60;
-    private static final double CHEESE_16_BASE = 2.25;
-    private static final double CHEESE_16_EXTRA = 0.90;
+    private static final double EIGHT_INCH_PRICE = 8.50;
+    private static final double TWELVE_INCH_PRICE = 12.00;
+    private static final double SIXTEEN_INCH_PRICE =16.50;
+    private static final double MEAT_8_BASE_PRICE = 1.00;
+    private static final double MEAT_8_EXTRA_PRICE = 0.50;
+    private static final double MEAT_12_BASE_PRICE = 2.00;
+    private static final double MEAT_12_EXTRA_PRICE = 1.00;
+    private static final double MEAT_16_BASE_PRICE = 3.00;
+    private static final double MEAT_16_EXTRA_PRICE = 1.50;
+    private static final double CHEESE_8_BASE_PRICE = 0.75;
+    private static final double CHEESE_8_EXTRA_PRICE = 0.30;
+    private static final double CHEESE_12_BASE_PRICE = 1.50;
+    private static final double CHEESE_12_EXTRA_PRICE = 0.60;
+    private static final double CHEESE_16_BASE_PRICE = 2.25;
+    private static final double CHEESE_16_EXTRA_PRICE = 0.90;
 
-    public Pizza(String size, String crust, boolean isStuffed, List<Topping> toppings) {
+    public Pizza(String size, String crust, boolean isStuffed) {
         this.size = size;
         this.crust = crust;
         this.isStuffed = isStuffed;
@@ -62,7 +62,7 @@ public class Pizza implements Orderable{
     public void setToppings(List<Topping> toppings) {
         this.toppings = toppings;
     }
-    private void addTopping(Topping t){
+    public void addTopping(Topping t){
         toppings.add(t);
     }
     private double calculateToppingPrice(Topping topping) {
@@ -75,18 +75,18 @@ public class Pizza implements Orderable{
 
         if (topping.getCategory().equalsIgnoreCase("Meat")) {
             return switch (this.size) {
-                case "8" -> MEAT_8_BASE + (topping.isExtra() ? MEAT_8_EXTRA : 0);
-                case "12" -> MEAT_12_BASE + (topping.isExtra() ? MEAT_12_EXTRA : 0);
-                case "16" -> MEAT_16_BASE + (topping.isExtra() ? MEAT_16_EXTRA : 0);
+                case "8" -> MEAT_8_BASE_PRICE + (topping.isExtra() ? MEAT_8_EXTRA_PRICE : 0);
+                case "12" -> MEAT_12_BASE_PRICE + (topping.isExtra() ? MEAT_12_EXTRA_PRICE : 0);
+                case "16" -> MEAT_16_BASE_PRICE + (topping.isExtra() ? MEAT_16_EXTRA_PRICE : 0);
                 default -> 0.00;
             };
         }
 
         if (topping.getCategory().equalsIgnoreCase("Cheese")) {
             return switch (this.size) {
-                case "8" -> CHEESE_8_BASE + (topping.isExtra() ? CHEESE_8_EXTRA : 0);
-                case "12" -> CHEESE_12_BASE + (topping.isExtra() ? CHEESE_12_EXTRA : 0);
-                case "16" -> CHEESE_16_BASE + (topping.isExtra() ? CHEESE_16_EXTRA : 0);
+                case "8" -> CHEESE_8_BASE_PRICE + (topping.isExtra() ? CHEESE_8_EXTRA_PRICE : 0);
+                case "12" -> CHEESE_12_BASE_PRICE + (topping.isExtra() ? CHEESE_12_EXTRA_PRICE : 0);
+                case "16" -> CHEESE_16_BASE_PRICE + (topping.isExtra() ? CHEESE_16_EXTRA_PRICE : 0);
                 default -> 0.00;
             };
         }
@@ -99,11 +99,11 @@ public class Pizza implements Orderable{
         double total = 0.00;
         switch (size){
             case "8 Inch":
-                total+= EIGHT_INCH;
+                total+= EIGHT_INCH_PRICE;
             case "12 Inch":
-                total+= TWELVE_INCH;
+                total+= TWELVE_INCH_PRICE;
             case "16 Inch":
-                total+= SIXTEEN_INCH;
+                total+= SIXTEEN_INCH_PRICE;
         }
         for (Topping topping : this.toppings) {
             total += calculateToppingPrice(topping);
@@ -113,6 +113,6 @@ public class Pizza implements Orderable{
 
     @Override
     public String getDescription() {
-        return size +" Inch MYO Pizza: "+calculatePrice();
+        return size + " Inch " +crust+" MYO Pizza: "+calculatePrice();
     }
 }

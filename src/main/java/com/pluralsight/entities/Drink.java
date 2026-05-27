@@ -38,7 +38,7 @@ public class Drink implements Orderable{
     public void setSize(String size) {
         this.size = size;
     }
-
+    @Override
     public double calculatePrice() {
         return switch (size) {
             case "Small" -> quantity*SMALL_DRINK;
@@ -47,7 +47,7 @@ public class Drink implements Orderable{
             default -> 0;
         };
     }
-
+    @Override
     public String getDescription() {
         return quantity+ " " +size+" Drink: "+calculatePrice();
     }
