@@ -1,0 +1,18 @@
+=========================================
+             GIGA-BITE PIZZA             
+=========================================
+Order ID: GBP-20260528141633
+Date: 05/28/2026 02:16 PM
+-----------------------------------------
+8 Inch Regular MYO Pizza       $  8.50
+   -> Extra Sausage            $  1.50
+   -> Extra Goat Cheese        $  1.05
+   -> Extra Mushrooms          $  0.00
+   -> Pesto                    $  0.00
+1 Small Fanta                  $  2.00
+4 Garlic Knots                 $  6.00
+Side: Parmesan                 $  0.00
+Side: Red Pepper               $  0.00
+-----------------------------------------
+Order Total:                   $ 19.05
+=========================================

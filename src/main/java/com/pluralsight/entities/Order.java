@@ -47,6 +47,14 @@ public class Order {
                         .append(ColorUtils.RESET)
                         .append("\n");
             }
+        cartText.append(ColorUtils.YELLOW)
+                .append("-----------------------------------------\n")
+                .append(ColorUtils.RESET);
+
+        cartText.append(ColorUtils.YELLOW)
+                .append(String.format("%-30s $%6.2f", "Total:", calculateTotal()))
+                .append(ColorUtils.RESET)
+                .append("\n");
             return cartText.toString();
     }
     public double calculateTotal(){
