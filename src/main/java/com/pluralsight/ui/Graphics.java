@@ -27,4 +27,22 @@ public class Graphics {
         System.out.println(ColorUtils.RED_BOLD + "          🍕 Welcome to GIGA-Bite Pizza! 🍕" + ColorUtils.RESET);
         System.out.println();
     }
+    public static void displayGoodbye() {
+        System.out.println(ColorUtils.YELLOW_BOLD);
+        System.out.println("  ____               _  _                 _ ");
+        System.out.println(" / ___|  ___   ___  | || |__   _   _  ___| |");
+        System.out.println("| |  _  / _ \\ / _ \\ | || '_ \\ | | | |/ _ \\ |");
+        System.out.println("| |_| || (_) | (_) || || |_) || |_| |  __/_|");
+        System.out.println(" \\____| \\___/ \\___/ |_||_.__/  \\__, |\\___(_)");
+        System.out.println("                               |___/        ");
+        System.out.println(ColorUtils.RESET);
+
+        System.out.println(ColorUtils.CYAN_BOLD + "             _______________ ");
+        System.out.println("            |  " + ColorUtils.YELLOW_BOLD + "GIGA-BITE" + ColorUtils.CYAN_BOLD + "    |__ ");
+        System.out.println("       _    |    " + ColorUtils.YELLOW_BOLD + "PIZZA" + ColorUtils.CYAN_BOLD + "      |  \\\\__ ");
+        System.out.println("      ( )   |_______________|_____| ");
+        System.out.println("              (O)             (O)   " + ColorUtils.RESET);
+
+        System.out.println(ColorUtils.GREEN_BOLD + "\n Thanks for stopping by! See you next time!\n" + ColorUtils.RESET);
+    }
 }

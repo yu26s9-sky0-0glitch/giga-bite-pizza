@@ -25,8 +25,7 @@ public class UserInterface {
                     newOrder();
                     break;
                 case 0:
-                  //todo
-                    // Graphics.displayGoodbye();
+                    Graphics.displayGoodbye();
                     break;
                 default:
                     System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
