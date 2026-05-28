@@ -44,7 +44,7 @@ public class UserInterface {
     private void orderScreen() {
         int command;
         do{
-            this.order.displayItems();
+            displayCartItems();
             command = Console.promptForInt("""
                      1) Add Pizza
                      2) Add Drink
@@ -74,6 +74,12 @@ public class UserInterface {
                     System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
             }
         }while(command!=0);
+    }
+
+    private void displayCartItems() {
+        System.out.println(ColorUtils.YELLOW_BOLD + "\n--- Current Cart ---" + ColorUtils.RESET);
+        System.out.println(this.order.generateDisplayCart());
+        System.out.println();
     }
 
     private void processAddSide() {
@@ -412,6 +418,6 @@ public class UserInterface {
 
     private void cancelOrder() {
         this.order = null;
-        System.out.println(ColorUtils.RED_BOLD + "\nOrder has been cancelled. Returning to main menu...\n" + ColorUtils.RESET);
+        Graphics.displayOrderCancelled();
     }
 }

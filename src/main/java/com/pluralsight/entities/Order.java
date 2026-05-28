@@ -36,16 +36,15 @@ public class Order {
     public void addItem(Orderable item){
         items.add(item);
     }
-    public void displayItems() {
-        System.out.println(ColorUtils.YELLOW_BOLD + "\n--- Current Cart ---" + ColorUtils.RESET);
+    public String generateDisplayCart() {
         if (items.isEmpty()) {
-            System.out.println(ColorUtils.YELLOW + "Your cart is currently empty." + ColorUtils.RESET);
+            return (ColorUtils.YELLOW + "Your cart is currently empty." + ColorUtils.RESET);
         } else {
             for (Orderable o : items) {
-                System.out.println(ColorUtils.YELLOW + o.getDescription() + ColorUtils.RESET);
+                return (ColorUtils.YELLOW + o.getDescription() + ColorUtils.RESET);
             }
         }
-        System.out.println();
+        return null;
     }
     public double calculateTotal(){
         double total =0;

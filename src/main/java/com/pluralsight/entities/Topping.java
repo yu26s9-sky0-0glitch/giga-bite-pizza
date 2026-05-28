@@ -1,6 +1,6 @@
 package com.pluralsight.entities;
 
-public class Topping implements Orderable{
+public class Topping{
     private String name;
     private String category;
     private boolean isExtra;
@@ -57,7 +57,7 @@ public class Topping implements Orderable{
         isExtra = extra;
     }
 
-    @Override
+
     public double calculatePrice() {
 
             if (this.category.equalsIgnoreCase("Regular") ||
@@ -89,7 +89,6 @@ public class Topping implements Orderable{
 
     }
 
-    @Override
     public String getDescription() {
         if(isExtra){
         return String.format("%-24s %6.2f", "Extra "+this.name,calculatePrice());}
