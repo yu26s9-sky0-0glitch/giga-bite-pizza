@@ -62,7 +62,7 @@ public class Order {
         }
 
         receipt.append("-----------------------------------------\n");
-        receipt.append(String.format("Order Total: $%.2f\n", calculateTotal()));
+        receipt.append(String.format("%-30s $%6.2f\n", "Order Total:", calculateTotal()));
         receipt.append("=========================================\n");
 
         return receipt.toString();

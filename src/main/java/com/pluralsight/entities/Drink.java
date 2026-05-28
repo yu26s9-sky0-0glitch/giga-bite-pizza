@@ -49,6 +49,7 @@ public class Drink implements Orderable{
     }
     @Override
     public String getDescription() {
-        return String.format("%d %s %30.2f",quantity,size+" Drink: ",calculatePrice());
+        String fullName = quantity + " " + size + " Drink";
+        return String.format("%-30s $%6.2f", fullName, calculatePrice());
     }
 }

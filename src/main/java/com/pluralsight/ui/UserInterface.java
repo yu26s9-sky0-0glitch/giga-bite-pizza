@@ -13,6 +13,7 @@ public class UserInterface {
     }
 
     public void homeScreen(){
+        Graphics.displayLogo();
         int command;
         do{
             command = Console.promptForInt("""
@@ -24,12 +25,14 @@ public class UserInterface {
                     newOrder();
                     break;
                 case 0:
+                    //displayGoodbye();
                     break;
                 default:
                     System.out.println("Invalid Input! Try Again!!");
             }
         }while(command!=0);
     }
+
 
     private void newOrder() {
         LocalDateTime now = LocalDateTime.now();
@@ -62,6 +65,7 @@ public class UserInterface {
                     break;
                 case 4:
                     processCheckOut();
+
                     command =0;
                     break;
                 case 5:
@@ -73,7 +77,6 @@ public class UserInterface {
             }
         }while(command!=0);
     }
-
     private void processAddSide() {
         boolean wantParmesan = Console.promptForYesNo("Do you want Parmesan with your order? ");
         boolean wantRedPepper = Console.promptForYesNo("Do you want Red Pepper with your order? ");
@@ -144,7 +147,7 @@ public class UserInterface {
                     isExtra = true;
                 }
 
-                pizza.addTopping(new Topping(toppingName, category, isExtra));
+                pizza.addTopping(new Topping(toppingName, category, isExtra,pizza.getSize()));
                 System.out.println("\n>>> " + toppingName + " added to your pizza! <<<\n");
             }
 
@@ -372,7 +375,8 @@ public class UserInterface {
 
     private void processCheckOut() {
         processAddSide();
-        System.out.println(this.order.generateReceiptText());
+        String receiptText = this.order.generateReceiptText();
+        System.out.println(receiptText);
         int command;
         command = Console.promptForInt("Do you want to pay Cash or Card?\n press 1 for cash\n press 2 for card",1,2);
         switch (command){
@@ -384,8 +388,9 @@ public class UserInterface {
                 System.out.println("Transaction Complete");
                 break;
         }
-        ReceiptFileManager.saveReceipt(this.order.generateReceiptText(), this.order.getTimeStamp());
+        ReceiptFileManager.saveReceipt(receiptText, this.order.getTimeStamp());
         this.order = null;
+        Graphics.displayOrderUp();
         System.out.println("Checkout complete! Returning to main menu...\n");
     }
 
@@ -408,4 +413,5 @@ public class UserInterface {
         this.order = null;
         System.out.println("\nOrder has been cancelled. Returning to main menu...\n");
     }
+
 }

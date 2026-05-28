@@ -11,18 +11,7 @@ public class Pizza implements Orderable{
     private static final double EIGHT_INCH_PRICE = 8.50;
     private static final double TWELVE_INCH_PRICE = 12.00;
     private static final double SIXTEEN_INCH_PRICE =16.50;
-    private static final double MEAT_8_BASE_PRICE = 1.00;
-    private static final double MEAT_8_EXTRA_PRICE = 0.50;
-    private static final double MEAT_12_BASE_PRICE = 2.00;
-    private static final double MEAT_12_EXTRA_PRICE = 1.00;
-    private static final double MEAT_16_BASE_PRICE = 3.00;
-    private static final double MEAT_16_EXTRA_PRICE = 1.50;
-    private static final double CHEESE_8_BASE_PRICE = 0.75;
-    private static final double CHEESE_8_EXTRA_PRICE = 0.30;
-    private static final double CHEESE_12_BASE_PRICE = 1.50;
-    private static final double CHEESE_12_EXTRA_PRICE = 0.60;
-    private static final double CHEESE_16_BASE_PRICE = 2.25;
-    private static final double CHEESE_16_EXTRA_PRICE = 0.90;
+
 
     public Pizza(String size, String crust, boolean isStuffed) {
         this.size = size;
@@ -65,59 +54,44 @@ public class Pizza implements Orderable{
     public void addTopping(Topping t){
         toppings.add(t);
     }
-    private double calculateToppingPrice(Topping topping) {
 
-        if (topping.getCategory().equalsIgnoreCase("Regular") ||
-                topping.getCategory().equalsIgnoreCase("Sauce")) {
-            return 0.00;
+    private double calculateBasePrice(){
+        double basePrice = 0.00;
+        switch (size){
+            case "8 Inch":
+                basePrice = EIGHT_INCH_PRICE;
+                break;
+            case "12 Inch":
+                basePrice = TWELVE_INCH_PRICE;
+                break;
+            case "16 Inch":
+                basePrice = SIXTEEN_INCH_PRICE;
+                break;
         }
-
-
-        if (topping.getCategory().equalsIgnoreCase("Meat")) {
-            return switch (this.size) {
-                case "8 Inch" -> MEAT_8_BASE_PRICE + (topping.isExtra() ? MEAT_8_EXTRA_PRICE : 0);
-                case "12 Inch" -> MEAT_12_BASE_PRICE + (topping.isExtra() ? MEAT_12_EXTRA_PRICE : 0);
-                case "16 Inch" -> MEAT_16_BASE_PRICE + (topping.isExtra() ? MEAT_16_EXTRA_PRICE : 0);
-                default -> 0.00;
-            };
-        }
-
-        if (topping.getCategory().equalsIgnoreCase("Cheese")) {
-            return switch (this.size) {
-                case "8 Inch" -> CHEESE_8_BASE_PRICE + (topping.isExtra() ? CHEESE_8_EXTRA_PRICE : 0);
-                case "12 Inch" -> CHEESE_12_BASE_PRICE + (topping.isExtra() ? CHEESE_12_EXTRA_PRICE : 0);
-                case "16 Inch" -> CHEESE_16_BASE_PRICE + (topping.isExtra() ? CHEESE_16_EXTRA_PRICE : 0);
-                default -> 0.00;
-            };
-        }
-
-        return 0.00;
+        return basePrice;
     }
 
     @Override
     public double calculatePrice() {
-        double total = 0.00;
-        switch (size){
-            case "8 Inch":
-                total+= EIGHT_INCH_PRICE;
-                break;
-            case "12 Inch":
-                total+= TWELVE_INCH_PRICE;
-                break;
-            case "16 Inch":
-                total+= SIXTEEN_INCH_PRICE;
-                break;
-            default:
-                System.out.println("Invalid Size Entry!");
-        }
+        double total = calculateBasePrice();
+
         for (Topping topping : this.toppings) {
-            total += calculateToppingPrice(topping);
+            total += topping.calculatePrice();
         }
         return total;
     }
 
     @Override
     public String getDescription() {
-        return String.format("%s %s %s %30.2f", size, crust ," MYO Pizza: ",calculatePrice());
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(String.format("%-30s $%6.2f", size + " " + crust + " MYO Pizza", calculateBasePrice()));
+
+        for (Topping topping : this.toppings) {
+
+            builder.append("\n   -> ").append(topping.getDescription());
+        }
+
+        return builder.toString();
     }
 }
