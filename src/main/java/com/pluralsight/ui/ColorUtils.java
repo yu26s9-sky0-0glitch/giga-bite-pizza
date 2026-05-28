@@ -14,4 +14,5 @@ public class ColorUtils {
     public static final String GREEN_BOLD = "\033[1;32m";
     public static final String YELLOW_BOLD = "\033[1;33m";
     public static final String WHITE_BOLD = "\033[1;37m";
+    public static final String CYAN_BOLD = "\033[1;36m";
 }

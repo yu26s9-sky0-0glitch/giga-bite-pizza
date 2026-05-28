@@ -25,14 +25,14 @@ public class UserInterface {
                     newOrder();
                     break;
                 case 0:
-                    //displayGoodbye();
+                  //todo
+                    // Graphics.displayGoodbye();
                     break;
                 default:
-                    System.out.println("Invalid Input! Try Again!!");
+                    System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
             }
         }while(command!=0);
     }
-
 
     private void newOrder() {
         LocalDateTime now = LocalDateTime.now();
@@ -65,18 +65,18 @@ public class UserInterface {
                     break;
                 case 4:
                     processCheckOut();
-
-                    command =0;
+                    command = 0;
                     break;
                 case 5:
                     cancelOrder();
-                    command =0;
+                    command = 0;
                     break;
                 default:
-                    System.out.println("Invalid Input! Try Again!!");
+                    System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
             }
         }while(command!=0);
     }
+
     private void processAddSide() {
         boolean wantParmesan = Console.promptForYesNo("Do you want Parmesan with your order? ");
         boolean wantRedPepper = Console.promptForYesNo("Do you want Red Pepper with your order? ");
@@ -88,15 +88,14 @@ public class UserInterface {
         }
     }
 
-
     private void processAddPizza() {
-      String size = processPizzaSize();
-      String crust = processPizzaCrust();
-      boolean isStuffed = processPizzaIsStuffed();
-      Pizza pizza = new Pizza(size,crust,isStuffed);
-      processToppings(pizza);
+        String size = processPizzaSize();
+        String crust = processPizzaCrust();
+        boolean isStuffed = processPizzaIsStuffed();
+        Pizza pizza = new Pizza(size,crust,isStuffed);
+        processToppings(pizza);
         this.order.addItem(pizza);
-        System.out.println("Awesome! Your custom pizza has been added to the order.");
+        System.out.println(ColorUtils.GREEN_BOLD + "Awesome! Your custom pizza has been added to the order.\n" + ColorUtils.RESET);
     }
 
     private void processToppings(Pizza pizza) {
@@ -129,12 +128,12 @@ public class UserInterface {
                     break;
                 case 4:
                     category = "Sauce";
-                   toppingName = processSauceSelection();
+                    toppingName = processSauceSelection();
                     break;
                 case 0:
                     break;
                 default:
-                    System.out.println("Invalid Input! Try Again!!");
+                    System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
             }
 
             if (toppingName != null) {
@@ -148,7 +147,7 @@ public class UserInterface {
                 }
 
                 pizza.addTopping(new Topping(toppingName, category, isExtra,pizza.getSize()));
-                System.out.println("\n>>> " + toppingName + " added to your pizza! <<<\n");
+                System.out.println(ColorUtils.GREEN + "\n>>> " + toppingName + " added to your pizza! <<<\n" + ColorUtils.RESET);
             }
 
         } while (command != 0);
@@ -246,16 +245,14 @@ public class UserInterface {
         };
     }
 
-
     private boolean processPizzaIsStuffed() {
-        boolean isStuffed = Console.promptForYesNo("Would you like the your pizza with stuffed crust?");
-        return isStuffed;
+        return Console.promptForYesNo("Would you like your pizza with stuffed crust?");
     }
 
     private String processPizzaCrust() {
         int command;
         String crust = null;
-        System.out.println("Choose you crust!");
+        System.out.println(ColorUtils.CYAN_BOLD + "\nChoose your crust!" + ColorUtils.RESET);
         command = Console.promptForInt("""
                 1) thin
                 2) regular
@@ -276,7 +273,7 @@ public class UserInterface {
                 crust = "Cauliflower";
                 break;
             default:
-                System.out.println("Invalid Input! Try Again!!");
+                System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
 
         }
         return crust;
@@ -284,7 +281,7 @@ public class UserInterface {
 
     private String processPizzaSize() {
         String size=null;
-        System.out.println("Choose the size!");
+        System.out.println(ColorUtils.CYAN_BOLD + "\nChoose the size!" + ColorUtils.RESET);
         int command = Console.promptForInt("""
                 1) 8" Inch
                 2) 12" Inch
@@ -301,7 +298,7 @@ public class UserInterface {
                 size = "16 Inch";
                 break;
             default:
-                System.out.println("Invalid Input! Try Again!!");
+                System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
         }
         return size;
     }
@@ -312,8 +309,8 @@ public class UserInterface {
         int quantity = Console.promptForInt("How many "+size+" "+name+" would you like: ",1,30);
         Drink drink = new Drink(name,size,quantity);
         this.order.addItem(drink);
+        System.out.println(ColorUtils.GREEN + "\n>>> Added " + quantity + " " + size + " " + name + "(s) to the order! <<<\n" + ColorUtils.RESET);
     }
-
 
     private String processDrinkSize() {
         String size = null;
@@ -334,11 +331,10 @@ public class UserInterface {
                 size="Large";
                 break;
             default:
-                System.out.println("Invalid Input! Try Again!!");
+                System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
         }
         return size;
     }
-
 
     private String processDrinkName() {
         String name = null;
@@ -361,8 +357,9 @@ public class UserInterface {
                 break;
             case 4:
                 name = "Dr. Pepper";
+                break;
             default:
-                System.out.println("Invalid Input! Try Again!!");
+                System.out.println(ColorUtils.RED_BOLD + "Invalid Input! Try Again!!" + ColorUtils.RESET);
         }
         return name;
     }
@@ -371,47 +368,51 @@ public class UserInterface {
         int quantity = Console.promptForInt("How many garlic knots would you like: ",1,30);
         GarlicKnots knots = new GarlicKnots(quantity);
         this.order.addItem(knots);
+        System.out.println(ColorUtils.GREEN + "\n>>> Added " + quantity + " Garlic Knots to the order! <<<\n" + ColorUtils.RESET);
     }
 
     private void processCheckOut() {
         processAddSide();
         String receiptText = this.order.generateReceiptText();
-        System.out.println(receiptText);
+
+        System.out.println(ColorUtils.YELLOW + receiptText + ColorUtils.RESET);
+
         int command;
-        command = Console.promptForInt("Do you want to pay Cash or Card?\n press 1 for cash\n press 2 for card",1,2);
+        command = Console.promptForInt("Do you want to pay Cash or Card?\n press 1 for cash\n press 2 for card\n-> ",1,2);
         switch (command){
             case 1:
                 processCash();
                 break;
             case 2:
-                System.out.println("Follow the instruction on the PinPad!");
-                System.out.println("Transaction Complete");
+                System.out.println(ColorUtils.CYAN_BOLD + "\nFollow the instruction on the PinPad!" + ColorUtils.RESET);
+                System.out.println(ColorUtils.GREEN_BOLD + "Transaction Complete" + ColorUtils.RESET);
                 break;
         }
         ReceiptFileManager.saveReceipt(receiptText, this.order.getTimeStamp());
         this.order = null;
+
         Graphics.displayOrderUp();
-        System.out.println("Checkout complete! Returning to main menu...\n");
+
+        System.out.println(ColorUtils.GREEN_BOLD + "Checkout complete! Returning to main menu...\n" + ColorUtils.RESET);
     }
 
     private void processCash() {
-        double total =this.order.calculateTotal();
+        double total = this.order.calculateTotal();
         double amountPaid = 0.0;
         while (amountPaid < total) {
             double cash = Console.promptForDouble("Enter cash amount: ");
             amountPaid += cash;
 
             if (amountPaid < total) {
-                System.out.printf("Still owe: $%.2f\n", (total - amountPaid));
+                System.out.printf(ColorUtils.RED_BOLD + "Still owe: $%.2f\n" + ColorUtils.RESET, (total - amountPaid));
             }
         }
         double change = amountPaid - total;
-        System.out.printf("Cash Received! Change Due: $%.2f\n", change);
+        System.out.printf(ColorUtils.GREEN_BOLD + "Cash Received! Change Due: $%.2f\n\n" + ColorUtils.RESET, change);
     }
 
     private void cancelOrder() {
         this.order = null;
-        System.out.println("\nOrder has been cancelled. Returning to main menu...\n");
+        System.out.println(ColorUtils.RED_BOLD + "\nOrder has been cancelled. Returning to main menu...\n" + ColorUtils.RESET);
     }
-
 }

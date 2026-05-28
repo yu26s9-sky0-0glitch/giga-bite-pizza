@@ -28,11 +28,11 @@ This project was developed as a comprehensive capstone for the Application Devel
 
 ## 📸 Application Preview
 
-| Main Menu | Pizza Configuration | Topping Selection |
-| :---: | :---: | :---: |
-| <img src="diagram/placeholder1.png" width="250" alt="Home Screen"> | <img src="diagram/placeholder2.png" width="250" alt="Pizza Menu"> | <img src="diagram/placeholder3.png" width="250" alt="Toppings Menu"> |
-| **Drinks & Sides** | **Checkout Process** | **Generated Receipt** |
-| <img src="diagram/placeholder4.png" width="250" alt="Drinks Menu"> | <img src="diagram/placeholder5.png" width="250" alt="Checkout Logic"> | <img src="diagram/placeholder6.png" width="250" alt="Receipt File"> |
+|                             Main Menu                             |                         Pizza Configuration                          |                          Topping Selection                          |
+|:-----------------------------------------------------------------:|:--------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+| <img src="images/placeholder1.png" width="250" alt="Home Screen"> |   <img src="images/placeholder2.png" width="250" alt="Pizza Menu">   | <img src="images/placeholder3.png" width="250" alt="Toppings Menu"> |
+|                        **Drinks & Sides**                         |                         **Checkout Process**                         |                        **Generated Receipt**                        |
+| <img src="images/placeholder4.png" width="250" alt="Drinks Menu"> | <img src="images/placeholder5.png" width="250" alt="Checkout Logic"> | <img src="images/placeholder6.png" width="250" alt="Receipt File">  |
 
 
 ---

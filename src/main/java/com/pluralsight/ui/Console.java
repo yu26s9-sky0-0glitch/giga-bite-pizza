@@ -14,11 +14,11 @@ public class Console {
     public static double promptForDouble(String prompt) {
         while (true) {
             try {
-                System.out.print(prompt);
+                System.out.print(ColorUtils.CYAN + prompt + ColorUtils.RESET);
                 String input = scanner.nextLine();
                 return Double.parseDouble(input);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a decimal number (e.g., 10.99).");
+                System.out.println(ColorUtils.RED_BOLD + "Invalid input. Please enter a decimal number (e.g., 10.99)." + ColorUtils.RESET);
             }
         }
     }
@@ -31,11 +31,11 @@ public class Console {
     public static int promptForInt(String prompt) {
         while (true) {
             try {
-                System.out.print(prompt);
+                System.out.print(ColorUtils.CYAN + prompt + ColorUtils.RESET);
                 String input = scanner.nextLine();
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a whole number.");
+                System.out.println(ColorUtils.RED_BOLD + "Invalid input. Please enter a whole number." + ColorUtils.RESET);
             }
         }
     }
@@ -54,7 +54,7 @@ public class Console {
             if (result >= min && result <= max) {
                 return result;
             }
-            System.out.printf("Please enter a number between %d and %d.%n", min, max);
+            System.out.printf(ColorUtils.RED_BOLD + "Please enter a number between %d and %d.%n" + ColorUtils.RESET, min, max);
         }
     }
     /**
@@ -65,15 +65,14 @@ public class Console {
      */
     public static String promptForString(String prompt) {
         String result;
-
         while (true) {
-            System.out.print(prompt);
+            System.out.print(ColorUtils.CYAN + prompt + ColorUtils.RESET);
             result = scanner.nextLine().trim();
 
             if (!result.isEmpty()) {
                 return result;
             }
-            System.out.println("Error: Input cannot be empty!");
+            System.out.println(ColorUtils.RED_BOLD + "Error: Input cannot be empty!" + ColorUtils.RESET);
         }
     }
     /**
@@ -82,7 +81,7 @@ public class Console {
      * @return the string the user selected.
      */
     public static String promptForStringEmpty(String prompt) {
-            System.out.print(prompt);
+            System.out.print(ColorUtils.CYAN + prompt + ColorUtils.RESET);
             return  scanner.nextLine().trim();
     }
 
@@ -92,7 +91,7 @@ public class Console {
      * @return the float the user selected.
      */
     public static float promptForFloat(String prompt) {
-        System.out.print(prompt);
+        System.out.print(ColorUtils.CYAN + prompt + ColorUtils.RESET);
         float result = scanner.nextFloat();
         scanner.nextLine();
         return result;
@@ -107,14 +106,14 @@ public class Console {
      */
     public static boolean promptForYesNo(String prompt) {
         int command;
-        command = promptForInt( prompt+ " \n press 1 for Yes, \n press 0 for No\n->",0,1);
+        command = promptForInt(ColorUtils.CYAN+ prompt+ " \n press 1 for Yes, \n press 0 for No\n->"+ColorUtils.RESET,0,1);
         switch (command){
             case 1:
                 return true;
             case 0:
                 return false;
             default:
-                System.out.println("Invalid Entry! Try Again!!");
+                System.out.println(ColorUtils.RED_BOLD+"Invalid Entry! Try Again!!"+ColorUtils.RESET);
     }
         return false;
     }
@@ -132,8 +131,9 @@ public class Console {
             try {
                 return LocalDate.parse(input);
             } catch (DateTimeParseException e) {
-                System.out.println("Invalid format! Please use YYYY-MM-DD or press Enter to skip.");
+                System.out.println(ColorUtils.RED_BOLD + "Invalid format! Please use YYYY-MM-DD or press Enter to skip." + ColorUtils.RESET);
             }
         }
+
     }
 }
