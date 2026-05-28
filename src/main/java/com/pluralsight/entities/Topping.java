@@ -91,7 +91,7 @@ public class Topping{
 
     public String getDescription() {
         if(isExtra){
-        return String.format("%-24s %6.2f", "Extra "+this.name,calculatePrice());}
+        return String.format("%-24s $%6.2f", "Extra "+this.name,calculatePrice());}
         else{
             return String.format("%-24s $%6.2f", this.name,calculatePrice());}
         }

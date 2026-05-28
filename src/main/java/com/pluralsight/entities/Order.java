@@ -39,12 +39,15 @@ public class Order {
     public String generateDisplayCart() {
         if (items.isEmpty()) {
             return (ColorUtils.YELLOW + "Your cart is currently empty." + ColorUtils.RESET);
-        } else {
-            for (Orderable o : items) {
-                return (ColorUtils.YELLOW + o.getDescription() + ColorUtils.RESET);
-            }
         }
-        return null;
+            StringBuilder cartText = new StringBuilder();
+            for (Orderable o : items) {
+                cartText.append(ColorUtils.YELLOW)
+                        .append(o.getDescription())
+                        .append(ColorUtils.RESET)
+                        .append("\n");
+            }
+            return cartText.toString();
     }
     public double calculateTotal(){
         double total =0;
